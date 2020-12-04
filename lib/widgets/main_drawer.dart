@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nav_meals/screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget _buildListTile(String title, IconData icon, Function method) {
@@ -15,9 +16,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {
-        //Go to different page.
-      },
+      onTap: method,
     );
   }
 
@@ -44,8 +43,12 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          _buildListTile('Meals', Icons.restaurant, () {}),
-          _buildListTile('Settings', Icons.settings, () {}),
+          _buildListTile('Meals', Icons.restaurant, () {
+            Navigator.of(context).pushReplacementNamed('/');
+          }),
+          _buildListTile('Settings', Icons.settings, () {
+            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
+          }),
         ],
       ),
     );
