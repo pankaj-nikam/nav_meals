@@ -3,18 +3,10 @@ import 'package:nav_meals/models/meal.dart';
 import 'package:nav_meals/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
-  void selectMeal(BuildContext context, Meal meal, Function removeMeal) {
-    Navigator.of(context)
-        .pushNamed(
+  void selectMeal(BuildContext context, Meal meal) {
+    Navigator.of(context).pushNamed(
       MealDetailScreen.routeName,
       arguments: meal,
-    )
-        .then(
-      (value) {
-        if (value != null) {
-          _removeMeal(value);
-        }
-      },
     );
   }
 
@@ -51,12 +43,11 @@ class MealItem extends StatelessWidget {
   }
 
   final Meal meal;
-  final Function _removeMeal;
-  MealItem(this.meal, this._removeMeal);
+  MealItem(this.meal);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => selectMeal(context, meal, _removeMeal),
+      onTap: () => selectMeal(context, meal),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
